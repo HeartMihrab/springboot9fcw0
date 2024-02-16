@@ -76,14 +76,19 @@ public class ZhiyuanzheEntity<T> implements Serializable {
 	 */
 					
 	private Integer nianling;
-	
+
+	/**
+	 * 积分
+	 */
+	private Long jifen;
+
 	/**
 	 * 手机号码
 	 */
-					
+
 	private String shoujihaoma;
-	
-	
+
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	private Date addtime;
@@ -91,10 +96,10 @@ public class ZhiyuanzheEntity<T> implements Serializable {
 	public Date getAddtime() {
 		return addtime;
 	}
+
 	public void setAddtime(Date addtime) {
 		this.addtime = addtime;
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -102,6 +107,7 @@ public class ZhiyuanzheEntity<T> implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * 设置：志愿者账号
 	 */
@@ -173,6 +179,20 @@ public class ZhiyuanzheEntity<T> implements Serializable {
 	 */
 	public Integer getNianling() {
 		return nianling;
+	}
+
+	/**
+	 * 获取：积分
+	 */
+	public Long getJifen() {
+		return jifen;
+	}
+
+	/**
+	 * 设置：积分
+	 */
+	public void setJifen(Long jifen) {
+		this.jifen = jifen;
 	}
 	/**
 	 * 设置：手机号码

@@ -54,6 +54,7 @@ public class ZhiyuanhuodongController {
     @Autowired
     private ZhiyuanhuodongService zhiyuanhuodongService;
 
+
     @Autowired
     private StoreupService storeupService;
 
@@ -68,7 +69,7 @@ public class ZhiyuanhuodongController {
 		HttpServletRequest request){
 		String tableName = request.getSession().getAttribute("tableName").toString();
 		if(tableName.equals("zhiyuanzuzhi")) {
-			zhiyuanhuodong.setZuzhibianhao((String)request.getSession().getAttribute("username"));
+//			zhiyuanhuodong.setZuzhibianhao((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<ZhiyuanhuodongEntity> ew = new EntityWrapper<ZhiyuanhuodongEntity>();
 

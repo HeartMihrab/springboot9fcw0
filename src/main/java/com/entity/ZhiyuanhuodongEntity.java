@@ -61,7 +61,7 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 * 活动类型
 	 */
 					
-	private String huodongleixing;
+//	private String huodongleixing;
 	
 	/**
 	 * 活动图片
@@ -74,50 +74,55 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 */
 					
 	private String huodongdidian;
-	
+
+	/**
+	 * 参加人数
+	 */
+	private Long renshu;
+
 	/**
 	 * 开始时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date kaishishijian;
-	
+
 	/**
 	 * 结束时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date jieshushijian;
-	
+
 	/**
 	 * 活动详情
 	 */
-					
+
 	private String huodongxiangqing;
-	
+
 	/**
 	 * 组织编号
 	 */
-					
-	private String zuzhibianhao;
-	
+
+//	private String zuzhibianhao;
+
 	/**
 	 * 组织名称
 	 */
-					
-	private String zuzhimingcheng;
-	
+
+//	private String zuzhimingcheng;
+
 	/**
 	 * 发布时间
 	 */
-				
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date fabushijian;
-	
-	
+
+
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
 	private Date addtime;
@@ -125,6 +130,7 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	public Date getAddtime() {
 		return addtime;
 	}
+
 	public void setAddtime(Date addtime) {
 		this.addtime = addtime;
 	}
@@ -132,34 +138,35 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * 设置：活动主题
 	 */
 	public void setHuodongzhuti(String huodongzhuti) {
 		this.huodongzhuti = huodongzhuti;
 	}
+
 	/**
 	 * 获取：活动主题
 	 */
 	public String getHuodongzhuti() {
 		return huodongzhuti;
 	}
-	/**
-	 * 设置：活动类型
-	 */
-	public void setHuodongleixing(String huodongleixing) {
-		this.huodongleixing = huodongleixing;
-	}
-	/**
-	 * 获取：活动类型
-	 */
-	public String getHuodongleixing() {
-		return huodongleixing;
-	}
+//	/**
+//	 * 设置：活动类型
+//	 */
+//	public void setHuodongleixing(String huodongleixing) {
+//		this.huodongleixing = huodongleixing;
+//	}
+//	/**
+//	 * 获取：活动类型
+//	 */
+//	public String getHuodongleixing() {
+//		return huodongleixing;
+//	}
 	/**
 	 * 设置：活动图片
 	 */
@@ -183,6 +190,18 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 */
 	public String getHuodongdidian() {
 		return huodongdidian;
+	}
+	/**
+	 * 设置：参加人数
+	 */
+	public void setRenshu(Long renshu) {
+		this.renshu = renshu;
+	}
+	/**
+	 * 获取：参加人数
+	 */
+	public Long getRenshu() {
+		return renshu;
 	}
 	/**
 	 * 设置：开始时间
@@ -220,30 +239,30 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	public String getHuodongxiangqing() {
 		return huodongxiangqing;
 	}
-	/**
-	 * 设置：组织编号
-	 */
-	public void setZuzhibianhao(String zuzhibianhao) {
-		this.zuzhibianhao = zuzhibianhao;
-	}
-	/**
-	 * 获取：组织编号
-	 */
-	public String getZuzhibianhao() {
-		return zuzhibianhao;
-	}
-	/**
-	 * 设置：组织名称
-	 */
-	public void setZuzhimingcheng(String zuzhimingcheng) {
-		this.zuzhimingcheng = zuzhimingcheng;
-	}
-	/**
-	 * 获取：组织名称
-	 */
-	public String getZuzhimingcheng() {
-		return zuzhimingcheng;
-	}
+//	/**
+//	 * 设置：组织编号
+//	 */
+//	public void setZuzhibianhao(String zuzhibianhao) {
+//		this.zuzhibianhao = zuzhibianhao;
+//	}
+//	/**
+//	 * 获取：组织编号
+//	 */
+//	public String getZuzhibianhao() {
+//		return zuzhibianhao;
+//	}
+//	/**
+//	 * 设置：组织名称
+//	 */
+//	public void setZuzhimingcheng(String zuzhimingcheng) {
+//		this.zuzhimingcheng = zuzhimingcheng;
+//	}
+//	/**
+//	 * 获取：组织名称
+//	 */
+//	public String getZuzhimingcheng() {
+//		return zuzhimingcheng;
+//	}
 	/**
 	 * 设置：发布时间
 	 */

@@ -51,6 +51,11 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	 */
 	@TableId
 	private Long id;
+
+	/**
+	 * 活动id
+	 */
+//	private Long huodongid;
 	/**
 	 * 活动主题
 	 */
@@ -61,7 +66,7 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	 * 活动类型
 	 */
 					
-	private String huodongleixing;
+//	private String huodongleixing;
 	
 	/**
 	 * 活动地点
@@ -73,13 +78,13 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	 * 组织编号
 	 */
 					
-	private String zuzhibianhao;
+//	private String zuzhibianhao;
 	
 	/**
 	 * 组织名称
 	 */
 					
-	private String zuzhimingcheng;
+//	private String zuzhimingcheng;
 	
 	/**
 	 * 志愿者账号
@@ -138,6 +143,21 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+//	/**
+//	 * 获取：活动ID
+//	 */
+//	public Long getHuodongid() {
+//		return huodongid;
+//	}
+//
+//	/**
+//	 * 设置：活动ID
+//	 */
+//	public void setHuodongid(Long huodongid) {
+//		this.huodongid = huodongid;
+//	}
+
 	/**
 	 * 设置：活动主题
 	 */
@@ -150,18 +170,18 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	public String getHuodongzhuti() {
 		return huodongzhuti;
 	}
-	/**
-	 * 设置：活动类型
-	 */
-	public void setHuodongleixing(String huodongleixing) {
-		this.huodongleixing = huodongleixing;
-	}
-	/**
-	 * 获取：活动类型
-	 */
-	public String getHuodongleixing() {
-		return huodongleixing;
-	}
+//	/**
+//	 * 设置：活动类型
+//	 */
+//	public void setHuodongleixing(String huodongleixing) {
+//		this.huodongleixing = huodongleixing;
+//	}
+//	/**
+//	 * 获取：活动类型
+//	 */
+//	public String getHuodongleixing() {
+//		return huodongleixing;
+//	}
 	/**
 	 * 设置：活动地点
 	 */
@@ -174,30 +194,30 @@ public class HuodongbaomingEntity<T> implements Serializable {
 	public String getHuodongdidian() {
 		return huodongdidian;
 	}
-	/**
-	 * 设置：组织编号
-	 */
-	public void setZuzhibianhao(String zuzhibianhao) {
-		this.zuzhibianhao = zuzhibianhao;
-	}
-	/**
-	 * 获取：组织编号
-	 */
-	public String getZuzhibianhao() {
-		return zuzhibianhao;
-	}
-	/**
-	 * 设置：组织名称
-	 */
-	public void setZuzhimingcheng(String zuzhimingcheng) {
-		this.zuzhimingcheng = zuzhimingcheng;
-	}
-	/**
-	 * 获取：组织名称
-	 */
-	public String getZuzhimingcheng() {
-		return zuzhimingcheng;
-	}
+//	/**
+//	 * 设置：组织编号
+//	 */
+//	public void setZuzhibianhao(String zuzhibianhao) {
+//		this.zuzhibianhao = zuzhibianhao;
+//	}
+//	/**
+//	 * 获取：组织编号
+//	 */
+//	public String getZuzhibianhao() {
+//		return zuzhibianhao;
+//	}
+//	/**
+//	 * 设置：组织名称
+//	 */
+//	public void setZuzhimingcheng(String zuzhimingcheng) {
+//		this.zuzhimingcheng = zuzhimingcheng;
+//	}
+//	/**
+//	 * 获取：组织名称
+//	 */
+//	public String getZuzhimingcheng() {
+//		return zuzhimingcheng;
+//	}
 	/**
 	 * 设置：志愿者账号
 	 */
