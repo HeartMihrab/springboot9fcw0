@@ -3,8 +3,12 @@ package com.controller;
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.entity.HuodongbaomingEntity;
+import com.entity.MessagesEntity;
 import com.entity.ZhiyuanzheEntity;
 import com.entity.view.ZhiyuanzheView;
+import com.service.HuodongbaomingService;
+import com.service.MessagesService;
 import com.service.TokenService;
 import com.service.ZhiyuanzheService;
 import com.utils.MPUtil;
@@ -16,10 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 志愿者
@@ -34,6 +35,11 @@ public class ZhiyuanzheController {
     @Autowired
     private ZhiyuanzheService zhiyuanzheService;
 
+    @Autowired
+    private HuodongbaomingService huodongbaomingService;
+
+    @Autowired
+    private MessagesService messagesService;
 
     @Autowired
     private TokenService tokenService;
@@ -67,6 +73,7 @@ public class ZhiyuanzheController {
         }
         Long uId = new Date().getTime();
         zhiyuanzhe.setId(uId);
+        zhiyuanzhe.setJifen(0L);
         zhiyuanzheService.insert(zhiyuanzhe);
         return R.ok();
     }
@@ -186,6 +193,7 @@ public class ZhiyuanzheController {
             return R.error("用户已存在");
         }
         zhiyuanzhe.setId(new Date().getTime());
+        zhiyuanzhe.setJifen(0L);
         zhiyuanzheService.insert(zhiyuanzhe);
         return R.ok();
     }
@@ -223,7 +231,15 @@ public class ZhiyuanzheController {
      * 删除
      */
     @RequestMapping("/delete")
+    @Transactional
     public R delete(@RequestBody Long[] ids) {
+        List<ZhiyuanzheEntity> zhiyuanzhe = zhiyuanzheService.selectList(new EntityWrapper<ZhiyuanzheEntity>().in("id", Arrays.asList(ids)));
+        for (ZhiyuanzheEntity t : zhiyuanzhe){
+            String zhiyuanzhezhanghao = t.getZhiyuanzhezhanghao();
+            huodongbaomingService.delete(new EntityWrapper<HuodongbaomingEntity>().eq("zhiyuanzhezhanghao", zhiyuanzhezhanghao));
+            messagesService.delete(new EntityWrapper<MessagesEntity>().eq("username", zhiyuanzhezhanghao));
+        }
+
         zhiyuanzheService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }

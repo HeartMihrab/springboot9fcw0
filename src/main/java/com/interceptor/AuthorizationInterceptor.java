@@ -56,16 +56,16 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         /**
          * 不需要验证权限的方法直接放过
          */
-        if (annotation != null) {
+        if(annotation!=null) {
             return true;
         }
 
         TokenEntity tokenEntity = null;
-        if (StringUtils.isNotBlank(token)) {
+        if(StringUtils.isNotBlank(token)) {
             tokenEntity = tokenService.getTokenEntity(token);
         }
 
-        if (tokenEntity != null) {
+        if(tokenEntity != null) {
             request.getSession().setAttribute("userId", tokenEntity.getUserid());
             request.getSession().setAttribute("role", tokenEntity.getRole());
             request.getSession().setAttribute("tableName", tokenEntity.getTablename());
@@ -78,9 +78,9 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         response.setContentType("application/json; charset=utf-8");
         try {
             writer = response.getWriter();
-		    writer.print(JSONObject.toJSONString(R.error(201, "请先登录")));
+            writer.print(JSONObject.toJSONString(R.error(401, "请先登录")));
         } finally {
-            if (writer != null) {
+            if(writer != null){
                 writer.close();
             }
         }

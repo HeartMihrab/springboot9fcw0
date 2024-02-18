@@ -15,7 +15,7 @@ public class InterceptorConfig extends WebMvcConfigurationSupport{
     public AuthorizationInterceptor getAuthorizationInterceptor() {
         return new AuthorizationInterceptor();
     }
-	
+
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getAuthorizationInterceptor()).addPathPatterns("/**").excludePathPatterns("/static/**");

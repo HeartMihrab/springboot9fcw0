@@ -10,6 +10,8 @@ import com.service.ZhiyuanhuodongService;
 import com.utils.MPUtil;
 import com.utils.PageUtils;
 import com.utils.R;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/huodongbaoming")
 public class HuodongbaomingController {
+
     @Autowired
     private HuodongbaomingService huodongbaomingService;
 
@@ -45,13 +48,10 @@ public class HuodongbaomingController {
     public R page(@RequestParam Map<String, Object> params, HuodongbaomingEntity huodongbaoming,
                   HttpServletRequest request) {
         String tableName = request.getSession().getAttribute("tableName").toString();
-        if (tableName.equals("zhiyuanzuzhi")) {
-//            huodongbaoming.setZuzhibianhao((String) request.getSession().getAttribute("username"));
-        }
         if (tableName.equals("zhiyuanzhe")) {
             huodongbaoming.setZhiyuanzhezhanghao((String) request.getSession().getAttribute("username"));
         }
-        EntityWrapper<HuodongbaomingEntity> ew = new EntityWrapper<HuodongbaomingEntity>();
+        EntityWrapper<HuodongbaomingEntity> ew = new EntityWrapper<>();
 
         PageUtils page = huodongbaomingService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, huodongbaoming), params), params));
 
@@ -114,10 +114,25 @@ public class HuodongbaomingController {
      * 后端保存
      */
     @RequestMapping("/save")
+    @Transactional
     public R save(@RequestBody HuodongbaomingEntity huodongbaoming, HttpServletRequest request) {
         huodongbaoming.setId(new Date().getTime() + new Double(Math.floor(Math.random() * 1000)).longValue());
         //ValidatorUtils.validateEntity(huodongbaoming);
+        String huodongzhuti = huodongbaoming.getHuodongzhuti();
+        String zhiyuanzhezhanghao = huodongbaoming.getZhiyuanzhezhanghao();
+        int count = huodongbaomingService.selectCount(new EntityWrapper<HuodongbaomingEntity>().eq("zhiyuanzhezhanghao", zhiyuanzhezhanghao).eq("huodongzhuti", huodongzhuti));
+        if (count > 0) {
+            return R.error("已报名当前活动");
+        }
+        long renshu = huodongbaomingService.selectCount(new EntityWrapper<HuodongbaomingEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()));
+        ZhiyuanhuodongEntity zhiyuanhuodongEntity = zhiyuanhuodongService.selectOne(new EntityWrapper<ZhiyuanhuodongEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()));
+        if (zhiyuanhuodongEntity.getJieshushijian().before(new Date())){
+            return R.error("活动已结束");
+        }
+        zhiyuanhuodongEntity.setRenshu(renshu);
+        zhiyuanhuodongService.updateById(zhiyuanhuodongEntity);
         huodongbaomingService.insert(huodongbaoming);
+
         return R.ok();
     }
 
@@ -125,19 +140,24 @@ public class HuodongbaomingController {
      * 前端保存
      */
     @RequestMapping("/add")
+    @Transactional
     public R add(@RequestBody HuodongbaomingEntity huodongbaoming, HttpServletRequest request) {
         huodongbaoming.setId(new Date().getTime() + new Double(Math.floor(Math.random() * 1000)).longValue());
         //ValidatorUtils.validateEntity(huodongbaoming);
-//        EntityWrapper<HuodongbaomingEntity> ew  = new EntityWrapper<>();
-        HuodongbaomingEntity huodongbaomingEntity = huodongbaomingService.selectOne(new EntityWrapper<HuodongbaomingEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()).and("zhiyuanzhezhanghao", huodongbaoming.getZhiyuanzhezhanghao()));
-        if (huodongbaomingEntity != null) {
+        String huodongzhuti = huodongbaoming.getHuodongzhuti();
+        String zhiyuanzhezhanghao = huodongbaoming.getZhiyuanzhezhanghao();
+        int count = huodongbaomingService.selectCount(new EntityWrapper<HuodongbaomingEntity>().eq("zhiyuanzhezhanghao", zhiyuanzhezhanghao).eq("huodongzhuti", huodongzhuti));
+        if (count > 0) {
             return R.error("已报名当前活动");
         }
-        huodongbaomingService.insert(huodongbaoming);
-        long count = huodongbaomingService.selectCount(new EntityWrapper<HuodongbaomingEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()));
+        long renshu = huodongbaomingService.selectCount(new EntityWrapper<HuodongbaomingEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()));
         ZhiyuanhuodongEntity zhiyuanhuodongEntity = zhiyuanhuodongService.selectOne(new EntityWrapper<ZhiyuanhuodongEntity>().eq("huodongzhuti", huodongbaoming.getHuodongzhuti()));
-        zhiyuanhuodongEntity.setRenshu(count);
+        if (zhiyuanhuodongEntity.getJieshushijian().before(new Date())){
+            return R.error("活动已结束");
+        }
+        zhiyuanhuodongEntity.setRenshu(renshu);
         zhiyuanhuodongService.updateById(zhiyuanhuodongEntity);
+        huodongbaomingService.insert(huodongbaoming);
 
         return R.ok();
     }

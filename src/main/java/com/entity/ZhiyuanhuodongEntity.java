@@ -61,18 +61,24 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 * 活动类型
 	 */
 					
-//	private String huodongleixing;
+	private String huodongleixing;
 	
 	/**
 	 * 活动图片
 	 */
 					
 	private String huodongtupian;
-	
+
+	/**
+	 * 积分
+	 */
+
+	private Integer jifen;
+
 	/**
 	 * 活动地点
 	 */
-					
+
 	private String huodongdidian;
 
 	/**
@@ -102,9 +108,7 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 
 	private String huodongxiangqing;
 
-	/**
-	 * 组织编号
-	 */
+
 
 //	private String zuzhibianhao;
 
@@ -113,7 +117,6 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 */
 
 //	private String zuzhimingcheng;
-
 	/**
 	 * 发布时间
 	 */
@@ -138,10 +141,10 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	/**
 	 * 设置：活动主题
 	 */
@@ -155,18 +158,19 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	public String getHuodongzhuti() {
 		return huodongzhuti;
 	}
-//	/**
-//	 * 设置：活动类型
-//	 */
-//	public void setHuodongleixing(String huodongleixing) {
-//		this.huodongleixing = huodongleixing;
-//	}
-//	/**
-//	 * 获取：活动类型
-//	 */
-//	public String getHuodongleixing() {
-//		return huodongleixing;
-//	}
+
+	/**
+	 * 设置：活动类型
+	 */
+	public void setHuodongleixing(String huodongleixing) {
+		this.huodongleixing = huodongleixing;
+	}
+	/**
+	 * 获取：活动类型
+	 */
+	public String getHuodongleixing() {
+		return huodongleixing;
+	}
 	/**
 	 * 设置：活动图片
 	 */
@@ -178,6 +182,20 @@ public class ZhiyuanhuodongEntity<T> implements Serializable {
 	 */
 	public String getHuodongtupian() {
 		return huodongtupian;
+	}
+
+	/**
+	 * 获取：活动积分
+	 */
+	public Integer getJifen() {
+		return jifen;
+	}
+
+	/**
+	 * 设置：活动积分
+	 */
+	public void setJifen(Integer jifen) {
+		this.jifen = jifen;
 	}
 	/**
 	 * 设置：活动地点
